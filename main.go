@@ -13,10 +13,14 @@ import (
 func main() {
 	a := app.New()
 	w := a.NewWindow("cursed calc")
+	w.SetFixedSize(true)
 
 	formula := ""
 
 	formulaDisplay := widget.NewEntry()
+	formulaDisplay.SetPlaceHolder("formula")
+	formulaDisplay.OnChanged = func(a string) { formula = a }
+
 	valueDisplay := widget.NewLabel("result")
 
 	buttonPad := fyne.NewContainerWithLayout(layout.NewGridLayout(5))
@@ -40,16 +44,16 @@ func main() {
 			valueDisplay.SetText("ree")
 			return
 		}
+
 		value, _ := expression.Evaluate(nil)
 
 		valueDisplay.SetText(fmt.Sprint(value))
-		formula = ""
-		formulaDisplay.SetText(formula)
 	})
 
 	clear := widget.NewButton("clear", func() {
 		formula = ""
 		formulaDisplay.SetText(formula)
+		valueDisplay.SetText("")
 	})
 
 	submitPad := fyne.NewContainerWithLayout(layout.NewGridLayout(2))
