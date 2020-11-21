@@ -1,1 +1,5 @@
 fyne-cross/
+*.exe
+*.bin
+*.gz
+fyne-calculator
