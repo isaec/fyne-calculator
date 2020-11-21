@@ -58,7 +58,6 @@ func main() {
 
 	w.SetContent(widget.NewVBox(
 		formulaDisplay,
-		widget.NewSeparator(),
 		valueDisplay,
 		buttonPad,
 		submitPad,
